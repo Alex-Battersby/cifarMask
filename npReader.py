@@ -1,0 +1,36 @@
+import os
+import numpy as np
+from PIL import Image
+import shutil
+
+#sanity checks that the mask has both black and white. the image shouldn't be only mask or no mask
+def check_unique(folder):
+    for filename in os.listdir(folder):
+        arr = np.load(folder + '/' + filename)
+        if len(np.unique(arr[..., 3])) < 2:
+            print(filename)
+
+def load_imgMask(fileList, folder):
+    os.makedirs('test', exist_ok=True)
+    for filename in fileList:
+        arr = np.load(folder + '/' + filename)
+        for i in range(len(arr)):
+            for j in range(len(arr[i])):
+                if arr[i][j][3] == 1 or arr[i][j][3] == 3:
+                    arr[i][j][3] = 255
+        mask = Image.fromarray(arr[...,3])
+        mask.save(f'test/{filename}mask.png')
+        img = Image.fromarray(arr[..., :3])
+        img.save(f'test/{filename}.png')
+
+def clear_imgMask():
+    shutil.rmtree('test')
+
+def main():
+    clear_imgMask()
+    # delete 163929, 298468, 467308, 524981 because masks include blank space between cables
+    #load_imgMask(['155145_0.npy', '160772_0.npy', '435206_0.npy', '491008_0.npy'], 'boatVal')
+    #check_unique('boatVal')
+
+if __name__ == "__main__":
+    main()
