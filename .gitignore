@@ -2,7 +2,8 @@ get-pip.py
 binary/
 boat/
 cat/
-coco/
+coco/*
+!coco/annotations/
 dog/
 horse/
 old stuff/

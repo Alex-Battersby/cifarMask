@@ -168,7 +168,7 @@ def checkLen(path):
     return i
 
 def main():
-    loadCocoCat("cup", startAnnIndex=0, numImgs=6000, folderSuffix="Train", single_img=True)
+    #loadCocoCat("cup", startAnnIndex=0, numImgs=6000, folderSuffix="Train", single_img=True)
     print(checkLen('coco/cupTrain'))
     #huggingFaceLoad("VisDrone/MARS20")
 
