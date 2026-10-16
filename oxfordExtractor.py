@@ -1,11 +1,6 @@
-from pycocotools.coco import COCO
 import os
-import requests
 import numpy as np
 from PIL import Image
-from io import BytesIO
-from torchvision.datasets import CIFAR10
-import shutil
 # corrupt: abyssinian 34, egyptian mau 139 145 167 177, beagle 116, chihuahua 121, saint bernard 60, all egyptian mau
 
 def crop(arr, mask):

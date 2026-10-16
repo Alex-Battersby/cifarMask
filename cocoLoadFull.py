@@ -4,7 +4,6 @@ import requests
 import numpy as np
 from PIL import Image
 from io import BytesIO
-from torchvision.datasets import CIFAR10
 import shutil
 #from datasets import load_dataset
 
