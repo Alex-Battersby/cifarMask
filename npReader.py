@@ -28,9 +28,6 @@ def clear_imgMask():
 
 def main():
     clear_imgMask()
-    # delete 163929, 298468, 467308, 524981 because masks include blank space between cables
-    #load_imgMask(['155145_0.npy', '160772_0.npy', '435206_0.npy', '491008_0.npy'], 'boatVal')
-    #check_unique('boatVal')
 
 if __name__ == "__main__":
     main()
