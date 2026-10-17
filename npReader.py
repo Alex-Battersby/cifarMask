@@ -16,7 +16,7 @@ def load_imgMask(fileList, folder):
         arr = np.load(folder + '/' + filename)
         for i in range(len(arr)):
             for j in range(len(arr[i])):
-                if arr[i][j][3] == 1 or arr[i][j][3] == 3:
+                if arr[i][j][3] == 1:
                     arr[i][j][3] = 255
         mask = Image.fromarray(arr[...,3])
         mask.save(f'test/{filename}mask.png')

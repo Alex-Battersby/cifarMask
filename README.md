@@ -1,23 +1,58 @@
 # cifarMask
 ## [WIP]
 
-For use, you must download COCO annotations and put them into a folder named coco in the same directory as the dataloader script
+I apologize for the missing images in my README! I'm in the process of finalizing everything for this project, and once I verify that my full CIFAR-10 sized example dataset is functional, I will upload it here for easy download, add example images to my README, and sprinkle additional ease-of-use comments throughout my code.
 
-## For use
+## For Use
 
 ### Overview
 
-This project downloads images from any MS-COCO class or Oxford-IIIT Pet class, then formats them to fit CIFAR-10 with an extra channel beyond RGB representing human-verified instance segmentation masks. It is modular and first outputs data as .npy files, after which the user can choose whether you want to convert them to .bin. The user also may specify the number of images they want, whether they would like to include background instances of objects of interest in their masks, and whether they would like to accept multiple instances cropped from the same base image.
+This project downloads images from any MS-COCO class or Oxford-IIIT Pet class, then formats them to fit CIFAR-10 with an extra channel beyond RGB representing human-verified instance segmentation masks. It is modular and first outputs data as .npy files, after which the user can choose whether you want to convert them to .bin. The user also may specify the number of images they want, whether they would like to include background instances of objects of interest in their masks, and whether they would like to accept multiple instances cropped from the same base image, among other variables.
 
 [random image plus mask in coco, followed by my dataset]
 
 ### Prerequisites
+
 The user must download ONLY the annotations folder for COCO 2017. Specifically, `coco/annotations/instances_train2017.json` and `coco/annotations/instances_val2017.json` are required to already be downloaded and in the parent folder of the project to run `cocoLoadFull.py` as is.
 
-THE USER DOES NOT NEED TO DOWNLOAD ALL OF COCO! This program automatically loads images during runtime and processes them without downloading first. This avoids unnece
+THE USER DOES NOT NEED TO DOWNLOAD ALL OF COCO! This program automatically loads images from their annotation JSON's during runtime and processes them without downloading first. This avoids unnecessary downloads and saves time and storage, but note that running the program on a full class of 6000 images can take upwards of one hour due to COCO's slow servers.
 
-### Image format
+The user also needs NumPy, PyCocoTools, PIL, and Requests installed to their environment, all of which are listed in `requirements.txt`.
+
+### Variability
+
+The user can specify many parameters for their dataset. Overarchingly, `cocoLoadFull.py` and `cocoLoadIndiv.py` accomplish the same thing, but the Full version compiles an amalgamation of every instance mask in an image to be used as each instance's mask, while the Indiv version only considers the instance being cropped around as part of its mask. In images with multiple instances of the same object in close proximity, there can be instances of your class of interest with separate masks from the object of interest. The Full version considers these background masks whose full objects are likely not in frame, while the Indiv version only counts the primary object which is almost guaranteed to be fully in frame. I find the Full version to be more useful for most situations, but it started as the Indiv version and perhaps someone needs that for some reason, so the Indiv script remains in the repo.
+
+[Images of an object with vs without full masks]
+
+Including multiple cropped objects of the same class from the same image may result in some data leakage. Because of this, the `single_img` variable in the `loadCocoCat` function in both COCO loader scripts can be set to True to only allow one output image per input image (within the same class). Repeated instances of the same class within the same image will be ignored, and only one object will be cropped around and downloaded.
+
+[Images of multiple objects from the same image]
+
+All other variable explanations necessary to implement functions should be listed in comments.
+
+### Troubleshooting
+binaryReader, npReader, startAnnIndex vs numImgs and their console outputs, IIIT corruption/blank imgs, errors expected
+
+
+## Image Formats
+
+### Quick Description
+
+Images will first be downloaded as 32x32x4 .npy files where the 4 channels are R, G, B, and mask (1 being object, 0 being background). A bounding box around the object of interest would take up at least 640 of the 1024 pixels and be as near to the center of the image as the initial image allows (an object near the edge of an image might not be possible to perfectly center).
+
+[centered image with bounding box drawn]
+
+### Specifics
 
 `cocoLoadFull.py` processes an input image and annotation, then crops down to a square around an instance of interest such that a bounding box around the instance would take up 62.5% of the square, unless the instance is too large for that, in which case it is simply centered in the square frame and remains the same size. After centering and adjusting instance size to greater than or equal to 62.5% of the square frame, the image and mask are downsampled to 32x32 pixels, at which point they are converted to a single .npy array with four channels per pixel (R, G, B, mask). These .npy arrays are saved automatically and can be converted to .bin with `npyToBinary.py` and deleted, or used immediately. Each file is named after its image ID in COCO/IIIT so the original image can be easily referenced at their respective websites for troubleshooting, and the COCO images include an underscore followed by the highlighted instance's index within its original image; if there are two instances of `cat` within a single COCO image and the user opts to include multiple instances per image, they will be named `[imgID]_0` and `[imgID]_1`.
 
-Following the same conventions, if `npyToBinary.py` is utilized, 
+[labeled img filenames with multiple instances per id]
+
+### Binary Format
+
+Upon running `npyToBinary.py`, images & masks are written into binary files starting with one byte representing their class number and then followed by 1024 bytes of red ((x1,y1),(x2,y1),(x3,y1),...(x1,y2,),(x2,y2),(x3,y2),...(x30,y32),(x31,y32),(x32,y32)), 1024 bytes of green, 1024 bytes of blue, and then 1024 bytes of mask data (representing 1 for object or 0 for background, again) for a total of 4097 bytes per object. This exactly matches the official CIFAR-10 format of 3073 bytes per object, plus the mask channel. Following the same naming conventions, files will retain their names and simply end with `.bin` instead of `.npy`.
+
+## The Future
+
+I plan to next create an STL-10 style dataset building off of this, perhaps employing ImageNet to gather mass unlabeled data guaranteed to contain at least one class of interest per image. The addition of an unlabeled data module will make this code an essential upgrade to any binary or multilabel classification research, as it will enable easy creation of custom datasets to test hypotheses.

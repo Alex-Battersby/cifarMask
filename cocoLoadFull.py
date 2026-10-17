@@ -132,15 +132,6 @@ def populateFolder(folderName, imgLoad, startAnnIndex, numImgs, catid, single_im
     if count == len(imgLoad):
         print('Reached end of available data')
 
-# def huggingFaceLoad(dataset, startIndex=0, numImgs=0):
-#     ds = load_dataset(dataset)
-#     i = startIndex
-#     while i < startIndex+numImgs:
-#         obj=ds["train"][i]
-#         img=ds['image']
-#         img.show()
-#         i+=1
-
 # please don't give it a negative start index or invalid catName or dumb folderSuffix
 def loadCocoCat(catName, startAnnIndex=0, numImgs=0, folderSuffix="Train", folderName='blank', single_img=False):
     if folderName=='blank':
@@ -167,8 +158,8 @@ def checkLen(path):
     return i
 
 def main():
-    loadCocoCat("bottle", startAnnIndex=4103, numImgs=1897, folderSuffix="Train", single_img=True)
-    print(checkLen('coco/bottleTrain'))
+    loadCocoCat("bowl", startAnnIndex=0, numImgs=6000, folderSuffix="Train", single_img=True)
+    print(checkLen('coco/bowlTrain'))
 
 if __name__ == "__main__":
     main()
