@@ -10,6 +10,9 @@ def check_unique(folder):
         if len(np.unique(arr[..., 3])) < 2:
             print(filename)
 
+def delete_img(path):
+    os.remove(path)
+
 def load_imgMask(fileList, folder):
     os.makedirs('test', exist_ok=True)
     for filename in fileList:
@@ -27,7 +30,7 @@ def clear_imgMask():
     shutil.rmtree('test')
 
 def main():
-    clear_imgMask()
+    check_unique('coco/automobileTrain')
 
 if __name__ == "__main__":
     main()

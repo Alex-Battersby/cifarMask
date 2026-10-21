@@ -158,8 +158,8 @@ def checkLen(path):
     return i
 
 def main():
-    loadCocoCat("bowl", startAnnIndex=0, numImgs=6000, folderSuffix="Train", single_img=True)
-    print(checkLen('coco/bowlTrain'))
+    loadCocoCat("bird", startAnnIndex=3000, numImgs=3, folderSuffix="Train", single_img=True)
+    print(checkLen('coco/birdTrain'))
 
 if __name__ == "__main__":
     main()
