@@ -5,15 +5,10 @@ import numpy as np
 from PIL import Image
 from io import BytesIO
 import shutil
-#from datasets import load_dataset
 
-# airplaneTrain+Val=5278
 # cat, dog: coco, oxford-iiit
-# person is maybe not a good category, too much overlap
-# cup is also good. includes any cup shaped things, 6000 npy downloaded
-# backpack
-# bottle
-# bowl
+# all else: coco
+# in my dataset: cup=0, automobile=1, bird=2, cat=3, bottle=4, dog=5, bowl=6, horse=7, ship=8, backpack=9
 
 
 coco = COCO("coco/annotations/instances_train2017.json")
