@@ -5,10 +5,13 @@ import shutil
 
 #sanity checks that the mask has both black and white. the image shouldn't be only mask or no mask
 def check_unique(folder):
+    fullMasks = []
     for filename in os.listdir(folder):
-        arr = np.load(folder + '/' + filename)
+        arr = np.load(os.path.join(folder, filename))
         if len(np.unique(arr[..., 3])) < 2:
             print(filename)
+            fullMasks.append(os.path.join(folder, filename))
+    return fullMasks
 
 def delete_img(path):
     os.remove(path)

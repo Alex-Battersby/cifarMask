@@ -11,3 +11,4 @@ venv/
 verify/
 zips/
 __pycache__/
+test/

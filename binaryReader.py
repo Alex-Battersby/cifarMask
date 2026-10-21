@@ -1,6 +1,7 @@
 import os
 import numpy as np
 from PIL import Image
+import shutil
 
 def readImg(folder, fileList):
     for filename in fileList:
@@ -20,6 +21,9 @@ def readImg(folder, fileList):
         mask_arr = mask*255
         maskImg = Image.fromarray(mask_arr)
         maskImg.save(f'test/class{label}_{filename[:-4]}mask.png')
+
+def clear_imgMask():
+    shutil.rmtree('test')
 
 def main():
     readImg('binary/automobileBinary', ['505927_0.bin'])
