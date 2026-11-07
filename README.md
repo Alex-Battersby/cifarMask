@@ -2,11 +2,17 @@
 
 ## Dataset Origin and License
 
-This pipeline is designed to operate on the **MS COCO (Common Objects in Context)** dataset created by the COCO Consortium.
+This pipeline is designed to operate on two datasets:
 
-- **Original Dataset:** [https://cocodataset.org](https://cocodataset.org)
-- **Original Annotations License:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
-- **Modifications:** Formats and serializes data into binary to be processed by CIFAR-10 analysis models.
+1. **MS COCO (Common Objects in Context)** dataset created by the COCO Consortium.
+  - **Original Dataset:** [https://cocodataset.org](https://cocodataset.org)
+  - **Original Annotations License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+  - **Modifications:** Formats and serializes data into binary to be processed by CIFAR-10 analysis models.
+
+2. **Oxford-IIIT Pet** dataset created by the Visual Geometry Group at Oxford:
+  - **Original Dataset:** [Visual Geometry Group, Oxford](https://www.robots.ox.ac.uk/~vgg/data/pets/)
+  - **Original Annotations License:** [CC BY-SA 4.0](https://creativecommons.org/licenses/by/4.0/)
+  - **Modifications:** Formats and serializes data into binary to be processed by CIFAR-10 analysis models.
 
 The original image copyrights belong to their respective Flickr owners.
 
@@ -97,3 +103,13 @@ If you use this dataset or code in your research, please cite both our repositor
   pages={740--755},
   year={2014}
 }
+```
+### Oxford IIIT-Pet Paper
+```bibtex
+@InProceedings{parkhi12a,
+  author    = "Parkhi, O. M. and Vedaldi, A. and Zisserman, A. and Jawahar, C.~V.",
+  title     = "Cats and Dogs",
+  booktitle = "IEEE Conference on Computer Vision and Pattern Recognition",
+  year      = "2012",
+}
+```
