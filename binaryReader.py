@@ -22,14 +22,14 @@ def readImg(folder, fileList):
         maskImg = Image.fromarray(mask_arr)
         maskImg.save(f'test/class{label}_{filename[:-4]}mask.png')
 
-def make_zip(path, class_name):
-    shutil.make_archive(os.path.join('zips', class_name), 'zip', root_dir=path)
+def make_zip(bin_path, class_name):
+    shutil.make_archive(os.path.join('zips', class_name), 'zip', root_dir=bin_path)
 
 def clear_imgMask():
-    make_zip('binary/automobileBinary', 'automobile')
+    os.removedirs('test/')
 
 def main():
-    clear_imgMask()
+    readImg('binary/catBinary', ['443_0.bin'])
 
 if __name__ == '__main__':
     main()
