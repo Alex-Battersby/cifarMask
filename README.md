@@ -10,7 +10,7 @@ I apologize for the missing images in my README! I'm in the process of finalizin
 This project downloads images from any MS-COCO class or Oxford-IIIT Pet class, then formats them to fit CIFAR-10 with an extra channel beyond RGB representing human-verified instance segmentation masks. It is modular and first outputs data as npy files, after which the user can choose whether you want to convert them to bin. The user also may specify the number of images they want, whether they would like to include background instances of objects of interest in their masks, and whether they would like to accept multiple instances cropped from the same base image, among other variables.
 
 <img width="400" height="300" alt="coco_443" src="https://github.com/user-attachments/assets/cd175a1a-d21a-49a5-beb9-ca121f5000ff" /> <img width="400" height="300" alt="coco_443" src="https://github.com/user-attachments/assets/9ee4f5e2-e10f-4485-ad31-e36ff69c198c" />
-<img width="300" height="300" alt="class3_443_0" src="https://github.com/user-attachments/assets/c9f76ca8-8613-4530-9416-adb1d8497dfc" /> <img width="300" height="300" alt="class3_443_0mask" src="https://github.com/user-attachments/assets/aff379d2-cb67-4943-ac62-32beacb2fe40" />
+<img width="320" height="320" alt="class3_443_0" src="https://github.com/user-attachments/assets/c9f76ca8-8613-4530-9416-adb1d8497dfc" /> <img width="320" height="320" alt="class3_443_0mask" src="https://github.com/user-attachments/assets/aff379d2-cb67-4943-ac62-32beacb2fe40" />
 
 [random image plus mask in coco, followed by my dataset]
 
