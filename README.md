@@ -1,7 +1,17 @@
 # cifarMask
-## [WIP]
 
-I apologize for the missing images in my README! I'm in the process of finalizing everything for this project, and once I verify that my full CIFAR-10 sized example dataset is functional, I will upload it here for easy download, add example images to my README, and sprinkle additional ease-of-use comments throughout my code. I also will add a license soon for this to be usable, once it's more finalized.
+## Dataset Origin and License
+
+This pipeline is designed to operate on the **MS COCO (Common Objects in Context)** dataset created by the COCO Consortium.
+
+- **Original Dataset:** [https://cocodataset.org](https://cocodataset.org)
+- **Original Annotations License:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+- **Modifications:** Formats and serializes data into binary to be processed by CIFAR-10 analysis models.
+
+The original image copyrights belong to their respective Flickr owners.
+
+## [WIP]
+Functional, but incomplete documentation currently.
 
 ## For Use
 
@@ -10,10 +20,9 @@ I apologize for the missing images in my README! I'm in the process of finalizin
 This project downloads images from any MS-COCO class or Oxford-IIIT Pet class, then formats them to fit CIFAR-10 with an extra channel beyond RGB representing human-verified instance segmentation masks. It is modular and first outputs data as npy files, after which the user can choose whether you want to convert them to bin. The user also may specify the number of images they want, whether they would like to include background instances of objects of interest in their masks, and whether they would like to accept multiple instances cropped from the same base image, among other variables.
 
 <img width="400" height="300" alt="coco_443" src="https://github.com/user-attachments/assets/cd175a1a-d21a-49a5-beb9-ca121f5000ff" /> <img width="400" height="300" alt="coco_443" src="https://github.com/user-attachments/assets/9ee4f5e2-e10f-4485-ad31-e36ff69c198c" />
-<img width="444" height="443" alt="image" src="https://github.com/user-attachments/assets/2015e1d6-61aa-4100-bb8d-d1bc475080bb" /> <img width="443" height="444" alt="image" src="https://github.com/user-attachments/assets/3484e94f-5e89-4bfd-b225-44b72bcf89dc" />
-
-
-[random image plus mask in coco, followed by my dataset]
+<p align="center">Image and mask data straight from MS-COCO</p>
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/2015e1d6-61aa-4100-bb8d-d1bc475080bb" /> <img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/3484e94f-5e89-4bfd-b225-44b72bcf89dc" />
+<p align="center">Image and mask saved by cifarMask</p>
 
 ### Prerequisites
 
@@ -74,3 +83,17 @@ Upon running `npyToBinary.py`, images & masks are written into binary files star
 ## The Future
 
 I plan to next create an STL-10 style dataset building off of this, perhaps employing ImageNet to gather mass unlabeled data guaranteed to contain at least one class of interest per image. The addition of an unlabeled data module will make this code an essential upgrade to any binary or multilabel classification research, as it will enable easy creation of custom datasets to test hypotheses.
+
+## Citation
+
+If you use this dataset or code in your research, please cite both our repository and the original MS COCO paper:
+
+### MS COCO Paper
+```bibtex
+@inproceedings{lin2014microsoft,
+  title={Microsoft COCO: Common Objects in Context},
+  author={Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  pages={740--755},
+  year={2014}
+}
