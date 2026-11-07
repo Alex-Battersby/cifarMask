@@ -92,7 +92,7 @@ I plan to next create an STL-10 style dataset building off of this, perhaps empl
 
 ## Citation
 
-If you use this dataset or code in your research, please cite both our repository and the original MS COCO paper:
+If you use this dataset or code in your research, please cite both my repository and the original MS COCO paper:
 
 ### MS COCO Paper
 ```bibtex
