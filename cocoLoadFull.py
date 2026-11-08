@@ -128,7 +128,7 @@ def populateFolder(folderName, imgLoad, startAnnIndex, numImgs, catid, single_im
         print('Reached end of available data')
 
 # please don't give it a negative start index or invalid catName or dumb folderSuffix
-def loadCocoCat(catName, startAnnIndex=0, numImgs=0, folderSuffix="Train", folderName='blank', single_img=False):
+def loadCocoCat(catName, startAnnIndex=0, numImgs=0, folderSuffix="Train", folderName='blank', single_img=True):
     if folderName=='blank':
         folderName = catName
     catid = coco.getCatIds(catNms=[catName])[0]
@@ -152,6 +152,7 @@ def checkLen(path):
         i+=1
     return i
 
+#single_img=True means only one file will be created per coco image
 def main():
     loadCocoCat("bird", startAnnIndex=3000, numImgs=3, folderSuffix="Train", single_img=True)
     print(checkLen('coco/birdTrain'))
